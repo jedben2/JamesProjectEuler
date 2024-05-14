@@ -75,10 +75,10 @@ def isprime(n):
     global primes
     for p in primes:
         if p <= int(np.ceil(np.sqrt(n))):
-            if gcd([p, n]) != 1:
+            if n % p == 0 and n > p:
                 return False
         else:
-            return True
+            break
     return True
 
 
@@ -86,7 +86,7 @@ def generate_primes(n):
     global primes
     with open("primes.txt", "rb") as f:
         primes_temp = pickle.load(f)
-    for k in tqdm(range(primes_temp[-1] + 1, primes_temp[-1] + 1 + n)):
+    for k in tqdm(range(primes_temp[-1] + 2, primes_temp[-1] + 1 + 2 * n, 2)):
         if isprime(k):
             primes_temp.append(k)
     with open("primes.txt", "wb") as f:
@@ -97,7 +97,7 @@ def generate_primes(n):
 def init_primes():
     global primes
     with open("primes.txt", "wb") as f:
-        pickle.dump([2], f)
+        pickle.dump([2, 3, 5, 7, 11], f)
     with open("primes.txt", "rb") as f:
         primes = pickle.load(f)
 
@@ -113,4 +113,5 @@ def ispalindrome(n):
 
 
 if __name__ == "__main__":
-    pass
+    # generate_primes(1000000)
+    print(max(primes))
