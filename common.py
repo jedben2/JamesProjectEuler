@@ -112,6 +112,28 @@ def ispalindrome(n):
     return True
 
 
+# Summations
+
+def sum1(n):
+    return n * (n + 1) / 2
+
+
+def sum2(n):
+    return n * (n + 1) * (2 * n + 1) / 6
+
+
+def sum3(n):
+    return (n * (n + 1) / 2) ** 2
+
+# Collatz algorithm (array)
+
+def collatz(n):
+    if n == 1:
+        return [1]
+    elif n % 2 == 0:
+        return [n] + collatz(n // 2)
+    else:
+        return [n] + collatz(3 * n + 1)
+
 if __name__ == "__main__":
-    # generate_primes(1000000)
-    print(max(primes))
+    pass
