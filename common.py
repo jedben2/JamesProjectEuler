@@ -125,6 +125,18 @@ def sum2(n):
 def sum3(n):
     return (n * (n + 1) / 2) ** 2
 
+
+def digitsum(n):
+    return sum([int(i) for i in str(n)])
+
+
+def maxtrianglesum(triangle):
+    for i in range(len(triangle) - 2, -1, -1):
+        for j in range(i + 1):
+            triangle[i][j] += max(triangle[i + 1][j], triangle[i + 1][j + 1])
+    return triangle[0][0]
+
+
 # Collatz algorithm (array)
 
 def collatz(n):
@@ -134,6 +146,7 @@ def collatz(n):
         return [n] + collatz(n // 2)
     else:
         return [n] + collatz(3 * n + 1)
+
 
 if __name__ == "__main__":
     pass
