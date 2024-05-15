@@ -137,6 +137,10 @@ def maxtrianglesum(triangle):
     return triangle[0][0]
 
 
+def sumdiv(n):
+    return sum(factors(n)[:-1])
+
+
 # Collatz algorithm (array)
 
 def collatz(n):
@@ -146,6 +150,36 @@ def collatz(n):
         return [n] + collatz(n // 2)
     else:
         return [n] + collatz(3 * n + 1)
+
+
+# Permutations
+
+def permlist_list(l):
+    perms = []
+    if len(l) == 1:
+        return [l]
+    else:
+        for item in l:
+            l2 = copy.deepcopy(l)
+            l2.remove(item)
+            l3 = permlist_list(l2)
+            for thing in l3:
+                perms.append([item] + thing)
+        return perms
+
+
+def permlist(l):
+    perms = permlist_list(l)
+    perms2 = [''.join([str(i) for i in bit]) for bit in perms]
+    sorted_perms = sorted([int(i) for i in perms2])
+    formatted_perms = [format(i, f'0{len(l)}d') for i in sorted_perms]
+    return formatted_perms
+
+
+# Digits
+
+def digitlen(n):
+    return len(str(n))
 
 
 if __name__ == "__main__":
