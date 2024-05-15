@@ -141,6 +141,18 @@ def sumdiv(n):
     return sum(factors(n)[:-1])
 
 
+def spiralsum(n):  # n layers
+    if n == 1:
+        return 1
+    else:
+        return 4 * (2 * n - 1) ** 2 - 12 * (n - 1) + spiralsum(n - 1)
+
+
+def digitpowersum(n, pow):
+    digits = [int(d) ** pow for d in list(str(n))]
+    return sum(digits)
+
+
 # Collatz algorithm (array)
 
 def collatz(n):
