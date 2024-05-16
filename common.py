@@ -1,7 +1,6 @@
 import numpy as np
-import pickle
+import pickle, copy, math
 from tqdm import tqdm
-import copy
 
 
 # Fibonacci numbers
@@ -101,6 +100,11 @@ def init_primes():
     with open("primes.txt", "rb") as f:
         primes = pickle.load(f)
 
+def primescapped(n):
+    primestemp = set(primes)
+    capped = set([i for i in range(n + 1)])
+    return list(primestemp.intersection(capped))
+
 
 # Palindromes
 
@@ -153,6 +157,10 @@ def digitpowersum(n, pow):
     return sum(digits)
 
 
+def digitfactorialsum(n):
+    return sum([math.factorial(int(d)) for d in str(n)])
+
+
 # Collatz algorithm (array)
 
 def collatz(n):
@@ -186,6 +194,13 @@ def permlist(l):
     sorted_perms = sorted([int(i) for i in perms2])
     formatted_perms = [format(i, f'0{len(l)}d') for i in sorted_perms]
     return formatted_perms
+
+
+def cyclennum(n):
+    perms = [n]
+    for i in range(len(str(n)) - 1):
+        perms.append(int(str(perms[-1])[-1] + str(perms[-1])[:-1]))
+    return perms
 
 
 # Digits
