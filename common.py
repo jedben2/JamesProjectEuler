@@ -203,10 +203,21 @@ def cyclennum(n):
     return perms
 
 
-# Digits
+# Truncate
 
-def digitlen(n):
-    return len(str(n))
+def truncatenum(n):
+    nstr = str(n)
+    splits = []
+    for i in range(len(nstr)):
+        splits.append(int(nstr[i:]))
+        splits.append(int(nstr[:i + 1]))
+    return splits[:-1]
+
+
+# Pythagoras
+
+def pythagtriple(m, n):
+    return m ** 2 - n ** 2, 2 * m * n, m ** 2 + n ** 2
 
 
 if __name__ == "__main__":
