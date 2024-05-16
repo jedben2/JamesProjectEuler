@@ -100,6 +100,7 @@ def init_primes():
     with open("primes.txt", "rb") as f:
         primes = pickle.load(f)
 
+
 def primescapped(n):
     primestemp = set(primes)
     capped = set([i for i in range(n + 1)])
@@ -214,10 +215,26 @@ def truncatenum(n):
     return splits[:-1]
 
 
-# Pythagoras
+# Special numbers
 
 def pythagtriple(m, n):
     return m ** 2 - n ** 2, 2 * m * n, m ** 2 + n ** 2
+
+
+def pentagonalnum(n):
+    return n * (3 * n - 1) // 2
+
+
+def solvepentagonal(n):
+    return (1 + np.sqrt(24 * n + 1)) / 6
+
+
+def hexagonalnum(n):
+    return n * (2 * n - 1)
+
+
+def solvehexagonal(n):
+    return (1 + np.sqrt(8 * n + 1)) / 4
 
 
 if __name__ == "__main__":
