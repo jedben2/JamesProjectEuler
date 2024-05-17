@@ -15,6 +15,8 @@ def fib(n):
 with open("primes.txt", "rb") as f:
     primes = pickle.load(f)
 
+composites = list(set(range(1, max(primes))) - set(primes))
+
 
 def factors(N):
     factors = []
@@ -162,6 +164,9 @@ def digitfactorialsum(n):
     return sum([math.factorial(int(d)) for d in str(n)])
 
 
+def sumselfpowermodB(n, B):
+    return sum([i ** i % B for i in range(1, n+1)]) % B
+
 # Collatz algorithm (array)
 
 def collatz(n):
@@ -235,6 +240,12 @@ def hexagonalnum(n):
 
 def solvehexagonal(n):
     return (1 + np.sqrt(8 * n + 1)) / 4
+
+def isgoldbach(n):
+    for s in [i ** 2 for i in range(1, int(np.sqrt(n / 1.5)))]:
+        if n - 2 * s in primes:
+            return True
+    return False
 
 
 if __name__ == "__main__":
