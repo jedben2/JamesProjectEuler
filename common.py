@@ -12,10 +12,12 @@ def fib(n):
 
 # Prime numbers, factorisation, gcd, and lcm
 
-with open("primes.txt", "rb") as f:
+with open("..//primes.txt", "rb") as f:
     primes = pickle.load(f)
 
-composites = list(set(range(1, max(primes))) - set(primes))
+
+def generatecomposites():
+    return list(set(range(1, max(primes))) - set(primes))
 
 
 def factors(N):
@@ -85,21 +87,21 @@ def isprime(n):
 
 def generate_primes(n):
     global primes
-    with open("primes.txt", "rb") as f:
+    with open("..//primes.txt", "rb") as f:
         primes_temp = pickle.load(f)
     for k in tqdm(range(primes_temp[-1] + 2, primes_temp[-1] + 1 + 2 * n, 2)):
         if isprime(k):
             primes_temp.append(k)
-    with open("primes.txt", "wb") as f:
+    with open("..//primes.txt", "wb") as f:
         pickle.dump(primes_temp, f)
     primes = copy.copy(primes_temp)
 
 
 def init_primes():
     global primes
-    with open("primes.txt", "wb") as f:
+    with open("..//primes.txt", "wb") as f:
         pickle.dump([2, 3, 5, 7, 11], f)
-    with open("primes.txt", "rb") as f:
+    with open("..//primes.txt", "rb") as f:
         primes = pickle.load(f)
 
 
@@ -165,7 +167,8 @@ def digitfactorialsum(n):
 
 
 def sumselfpowermodB(n, B):
-    return sum([i ** i % B for i in range(1, n+1)]) % B
+    return sum([i ** i % B for i in range(1, n + 1)]) % B
+
 
 # Collatz algorithm (array)
 
@@ -209,6 +212,20 @@ def cyclennum(n):
     return perms
 
 
+def replacedigits(pattern, n):
+    replacednums = []
+    n = str(n)
+    for d in range(0, 10):
+        nreplaced = ""
+        for i, place in enumerate(pattern):
+            if place:
+                nreplaced += str(d)
+            else:
+                nreplaced += n[i]
+        replacednums.append(nreplaced)
+    return replacednums
+
+
 # Truncate
 
 def truncatenum(n):
@@ -240,6 +257,7 @@ def hexagonalnum(n):
 
 def solvehexagonal(n):
     return (1 + np.sqrt(8 * n + 1)) / 4
+
 
 def isgoldbach(n):
     for s in [i ** 2 for i in range(1, int(np.sqrt(n / 1.5)))]:
