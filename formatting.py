@@ -13,5 +13,5 @@ for num, level in enumerate(levels):
     if num == len(levels) - 1:
         problemnum = 25 * num + len(problems)
         print(f"Up to problem {problemnum}.")
-
-
+with open("README.md", "w") as f:
+    f.write(f"# James' Project Euler Repository\nHere is my Project Euler files.\nDone up to and including Problem {problemnum}!")
