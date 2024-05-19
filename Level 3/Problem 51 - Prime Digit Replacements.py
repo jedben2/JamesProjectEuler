@@ -1,4 +1,4 @@
-# Prime Digit Replacements
+# Problem 51 - Prime Digit Replacements
 
 from common import replacedigits, primescapped, tqdm, isprime
 

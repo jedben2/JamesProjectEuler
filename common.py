@@ -52,26 +52,16 @@ def primepowerfact(n, maxprime):
         pows += [countlist(l, p)]
 
 
-def gcd(l):
-    maxprime = max(l)
-    numpows = np.array([primepowerfact(i, maxprime) for i in l])
-    g = 1
-    for i, p in enumerate(primes):
-        try:
-            g *= p ** np.min(numpows[:, i])
-        except:
-            return g
+def gcd(a, b):
+    c = min(a, b)
+    r = max(a, b) % c
+    if r == 0:
+        return c
+    return gcd(c, r)
 
 
-def lcm(l):
-    maxprime = max(l)
-    numpows = np.array([primepowerfact(i, maxprime) for i in l])
-    g = 1
-    for i, p in enumerate(primes):
-        try:
-            g *= p ** np.max(numpows[:, i])
-        except:
-            return g
+def lcm(a, b):
+    return a * b // gcd(a, b)
 
 
 def isprime(n):
@@ -109,16 +99,6 @@ def primescapped(n):
     primestemp = set(primes)
     capped = set([i for i in range(n + 1)])
     return list(primestemp.intersection(capped))
-
-
-# Palindromes
-
-def ispalindrome(n):
-    N = str(n)
-    for i in range(len(N) // 2):
-        if not N[i] == N[-1 - i]:
-            return False
-    return True
 
 
 # Summations
@@ -181,7 +161,7 @@ def collatz(n):
         return [n] + collatz(3 * n + 1)
 
 
-# Permutations
+# Permutations and operations on moving digits
 
 def permlist_list(l):
     perms = []
@@ -226,7 +206,9 @@ def replacedigits(pattern, n):
     return replacednums
 
 
-# Truncate
+def concatenatenums(a, b):
+    return int(str(a) + str(b))
+
 
 def truncatenum(n):
     nstr = str(n)
@@ -259,9 +241,24 @@ def solvehexagonal(n):
     return (1 + np.sqrt(8 * n + 1)) / 4
 
 
+def ispalindrome(n):
+    N = str(n)
+    if N == N[::-1]:
+        return True
+    return False
+
+
 def isgoldbach(n):
     for s in [i ** 2 for i in range(1, int(np.sqrt(n / 1.5)))]:
         if n - 2 * s in primes:
+            return True
+    return False
+
+
+def islychrel(n):
+    for i in range(50):
+        n += int(str(n)[::-1])
+        if ispalindrome(n):
             return True
     return False
 

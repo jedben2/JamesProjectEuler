@@ -1,4 +1,4 @@
-# Permuted Multiples
+# Problem 52 - Permuted Multiples
 
 # The repeating digits of 1/7 (142857) have this property. I kinda just remembered that fact :P
 # Here is some (inefficient) code anyway.

@@ -1,4 +1,4 @@
-# Reciprocal Cycles
+# Problem 26 - Reciprocal Cycles
 
 from common import primes
 
