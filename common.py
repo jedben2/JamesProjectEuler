@@ -185,6 +185,12 @@ def permlist(l):
     return formatted_perms
 
 
+def ispermutation(a, n):
+    if sorted(list(str(a))) == sorted(list(str(n))):
+        return True
+    return False
+
+
 def cyclennum(n):
     perms = [n]
     for i in range(len(str(n)) - 1):
@@ -225,20 +231,12 @@ def pythagtriple(m, n):
     return m ** 2 - n ** 2, 2 * m * n, m ** 2 + n ** 2
 
 
-def pentagonalnum(n):
-    return n * (3 * n - 1) // 2
+def pnumber(p, n):
+    return n * (2 + (n - 1) * (p - 2)) // 2
 
 
-def solvepentagonal(n):
-    return (1 + np.sqrt(24 * n + 1)) / 6
-
-
-def hexagonalnum(n):
-    return n * (2 * n - 1)
-
-
-def solvehexagonal(n):
-    return (1 + np.sqrt(8 * n + 1)) / 4
+def solvepnumber(p, x):
+    return (p - 4 + np.sqrt(p ** 2 + 8 * p * (x - 1) - 16 * (x - 1))) / (2 * p - 4)
 
 
 def ispalindrome(n):
@@ -261,6 +259,32 @@ def islychrel(n):
         if ispalindrome(n):
             return True
     return False
+
+
+# Continued Fractions
+
+def continuedfractionsqrt(N):
+    a = [int(np.sqrt(N))]
+    n = 1
+    frac = [1, - a[0], 1]
+    frac0 = [1, - a[0], 1]
+    if frac[0] * np.sqrt(N) + frac[1] == 0:
+        return [N]
+    running = True
+    while running:
+        x = [frac[0] * frac[2], -1 * frac[1] * frac[2], frac[0] * frac[0] * N - frac[1] ** 2]
+        a.append(int((x[0] * np.sqrt(N) + x[1]) / x[2]))
+        g1 = gcd(frac[0] * frac[0] * N - frac[1] ** 2, -1 * frac[1] * frac[2])
+        g2 = gcd(frac[0] * frac[2], frac[0] * frac[0] * N - frac[1] ** 2)
+        g = gcd(g1, g2)
+        frac = [frac[0] * frac[2] // g,
+                (-1 * frac[1] * frac[2] - a[n] * frac[0] * frac[0] * N + a[n] * frac[1] ** 2) // g,
+                (frac[0] * frac[0] * N - frac[1] ** 2) // g]
+        n += 1
+        if frac[0] * frac0[2] == frac0[0] * frac[2] and frac[1] * frac0[2] == frac0[1] * frac[2]:
+            running = False
+
+    return a
 
 
 if __name__ == "__main__":
