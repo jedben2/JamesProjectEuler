@@ -4,8 +4,9 @@
 
 from common import continuedfractionsqrt, tqdm
 
-count = 0
+nums = []
 for N in tqdm(range(1, 10001)):
     if len(continuedfractionsqrt(N)) % 2 == 0:
-        count += 1
-print(count)
+        nums.append(N)
+print(len(nums))
+print(max(nums))

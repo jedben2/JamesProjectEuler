@@ -1,8 +1,8 @@
-# Problem 18 - Maximum Path Sum I
+# Problem 67 - Maximum Path Sum II
 
 from common import maxtrianglesum
 
-with open("p18nums.txt", "r") as f:
+with open("0067_triangle.txt", "r") as f:
     triangle_temp = f.readlines()
     for i in range(len(triangle_temp)):
         triangle_temp[i] = triangle_temp[i].strip()

@@ -1,6 +1,7 @@
 import numpy as np
 import pickle, copy, math
 from tqdm import tqdm
+import gmpy2
 
 
 # Fibonacci numbers
@@ -285,6 +286,29 @@ def continuedfractionsqrt(N):
             running = False
 
     return a
+
+def periodcontinuedfractionsqrt(N):
+    l = continuedfractionsqrt(N)
+    return len(l[1:])
+
+def evalcontinuedfractionsqrt(N, n):
+    if gmpy2.is_square(N):
+        return N, 1
+    l = continuedfractionsqrt(N)
+    period = len(l[1:])
+    if period >= n:
+        l_expanded = l[:n]
+    else:
+        l_expanded = [l[0]] + l[1:] * n
+        while len(l_expanded) > n:
+            l_expanded.pop(-1)
+    a = l_expanded[-1]
+    b = 1
+    l2 = l_expanded[::-1]
+    for d in l2[1:-1]:
+        g = gcd(b, b * d + a)
+        a, b = b // g, (b * d + a) // g
+    return a + l2[-1] * b, b
 
 
 if __name__ == "__main__":
