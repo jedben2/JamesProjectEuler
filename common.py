@@ -2,6 +2,7 @@ import numpy as np
 import pickle, copy, math
 from tqdm import tqdm
 import gmpy2
+from collections import Counter
 
 
 # Fibonacci numbers
@@ -102,6 +103,15 @@ def primescapped(n):
     return list(primestemp.intersection(capped))
 
 
+def eulerphi(n):
+    if n == 1:
+        return 1
+    k = n
+    for p in set(primefactors(n)):
+        k -= k // p
+    return k
+
+
 # Summations
 
 def sum1(n):
@@ -187,7 +197,7 @@ def permlist(l):
 
 
 def ispermutation(a, n):
-    if sorted(list(str(a))) == sorted(list(str(n))):
+    if Counter(list(str(a))) == Counter(list(str(n))):
         return True
     return False
 
@@ -287,9 +297,11 @@ def continuedfractionsqrt(N):
 
     return a
 
+
 def periodcontinuedfractionsqrt(N):
     l = continuedfractionsqrt(N)
     return len(l[1:])
+
 
 def evalcontinuedfractionsqrt(N, n):
     if gmpy2.is_square(N):
