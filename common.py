@@ -67,6 +67,8 @@ def lcm(a, b):
 
 
 def isprime(n):
+    if n == 1:
+        return False
     global primes
     for p in primes:
         if p <= int(np.ceil(np.sqrt(n))):
@@ -234,6 +236,8 @@ def truncatenum(n):
         splits.append(int(nstr[i:]))
         splits.append(int(nstr[:i + 1]))
     return splits[:-1]
+
+
 
 
 # Special numbers
