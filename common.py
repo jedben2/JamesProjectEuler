@@ -91,7 +91,7 @@ def generate_primes(n):
     primes = copy.copy(primes_temp)
 
 
-def init_primes():
+def init_primes():  # DO NOT RUN
     global primes
     with open("..//primes.txt", "wb") as f:
         pickle.dump([2, 3, 5, 7, 11], f)
@@ -238,12 +238,7 @@ def truncatenum(n):
     return splits[:-1]
 
 
-
-
 # Special numbers
-
-def pythagtriple(m, n):
-    return m ** 2 - n ** 2, 2 * m * n, m ** 2 + n ** 2
 
 
 def pnumber(p, n):
