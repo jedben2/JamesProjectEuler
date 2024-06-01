@@ -1,5 +1,7 @@
 # Problem 25 - 1000-digit Fibonacci Number
 
+import numpy as np
+
 def fibdigitlen(n):
     phi = (1 + np.sqrt(5)) / 2
     return n * np.log10(phi) - 0.5 * np.log10(5) + 1
