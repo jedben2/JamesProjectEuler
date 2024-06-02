@@ -322,5 +322,19 @@ def evalcontinuedfractionsqrt(N, n):
     return a + l2[-1] * b, b
 
 
+# Geometry
+
+def dist(p1, p2):
+    return np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+
+
+def areatriangle(p1, p2, p3):
+    a = dist(p1, p2)
+    b = dist(p1, p3)
+    c = dist(p2, p3)
+    s = (a + b + c) / 2
+    return np.sqrt(s * (s - a) * (s - b) * (s - c))
+
+
 if __name__ == "__main__":
     pass
