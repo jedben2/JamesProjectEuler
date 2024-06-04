@@ -54,6 +54,17 @@ def primepowerfact(n, maxprime):
         pows += [countlist(l, p)]
 
 
+def numfactors(n):
+    c = 0
+    for i in range(1, int(n ** 0.5) + 1):
+        if n % i == 0:
+            if n == i ** 2:
+                c += 1
+            else:
+                c += 2
+    return c
+
+
 def gcd(a, b):
     c = min(a, b)
     r = max(a, b) % c
